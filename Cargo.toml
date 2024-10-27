@@ -1,0 +1,11 @@
+[package]
+name = "int6_miniproject7"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.3.17", features = ["derive"] }
+tempfile = "3.3"
+assert_cmd = "2.0"
+predicates = "2.0"
+tempdir = "0.3"
