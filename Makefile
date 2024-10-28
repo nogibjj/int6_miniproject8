@@ -2,13 +2,16 @@ install:
 	pip install --upgrade pip && pip install -r requirements.txt
 
 format:
-	black *.py
+	black mylib/*.py
 
 lint:
-	pylint --disable=R,C --ignore-patterns=test_.*?py *.py
+	pylint --disable=R,C --ignore-patterns=test_.*?py mylib/*.py
+
+run:
+	python mylib/main.py $(filter-out $@,$(MAKECMDGOALS))
 
 test:
-	python -m pytest -vv -cov=main test_main.py
+	python -m pytest -vv tests/test_main.py
 
 all: install format lint test
 
@@ -37,9 +40,13 @@ rust_test:
 	cargo test --quiet
 
 rust_run:
-	cargo run
+	cargo run --release
 
 rust_build:
 	cargo build --release
 
 rust_all: format lint test run
+
+
+%:
+	@:
